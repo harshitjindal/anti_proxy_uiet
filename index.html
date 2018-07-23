@@ -41,6 +41,7 @@
                                 <video onclick="snapshot(this);" width=300 height=300 id="video" controls autoplay></video>
                                 <br>
                                 <canvas  id="myCanvas" width="300" height="220"></canvas>
+                                <div id = "he"> </div>
                             </p>
                     </div>
 
@@ -125,7 +126,17 @@
         //
         if((response.images[0].transaction.status) == "success"){
             Materialize.toast("Student added succesfully by name " +response.images[0].transaction.subject_id+ " in gallery name " +response.images[0].transaction.gallery_name, 4000);
+            var width=response.images[0].transaction.width;
+            var height=response.images[0].transaction.height;
+            var x=response.images[0].transaction.topLeftX;
+            var y=response.images[0].transaction.topLeftY;
+            document.getElementById("he").style.width = width+'px';
+            document.getElementById("he").style.height = height+'px';
+            document.getElementById("he").style.top =y+'px';
+            document.getElementById("he").style.left =x +'px';
+            console.log(response.images[0].transaction.topLeftY);
         }
+        
         else{
             Materialize.toast("Unable to add student", 4000);
         }
@@ -133,4 +144,12 @@
       console.log(img1.src);
     }
 </script>
+<style type="text/css">
+    #he {
+        border:1px solid red;
+        position:absolute;
+        margin-top: 490px;
+        margin-left: 350px;
+    }
+</style>
 </html>
